@@ -1,2 +1,4 @@
 this is a sample text file text text text
 with two lines
+actually three lines
+No, four lines

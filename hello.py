@@ -1,21 +1,22 @@
 import sys
 
-msg = 'hello world'
-f = open('file.txt','r')
+def readfile(filename):
+    with open(filename, mode = "r", encoding='utf-8') as f:
+        for line in f.readlines():
+            sys.stdout.write(line)
 
-d = dict()
+    
+  
+def main(filename):
+    readfile(filename)
 
-for line in f:
-    print(line)
-    for word in line.split():
-        print(word)
-        d[word] = d.setdefault(word,0)+1
+try:
+    if __name__ == '__main__':
+        main(sys.argv[1])
+except IndexError:
+    sys.stderr.write("no parameters passed")
 
-    for word, count in sorted(d.items(), key=lambda x: x[1]):
-        print('{} {}'.format(count, word))
-
-
-f.close
-
-
+except FileNotFoundError as e:
+    sys.stderr.write("File {} not found".format(e.filename))
+  
 
